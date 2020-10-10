@@ -8,7 +8,6 @@ public class InventoryView : MonoBehaviour
 	[Header("Tmp settings")]
 	[SerializeField] private InventoryData _data = null;
 	[SerializeField] private InputReader _inputReader = null;
-	[SerializeField] private MenuInputReader _menuInputReader = null;
 
 	[Header("Slots settings")]
 	[SerializeField] private InventorySlotView _slotPrefab = null;
@@ -30,7 +29,7 @@ public class InventoryView : MonoBehaviour
 	private void OnEnable()
 	{
 		var items = _data.Items;
-		_slots = new InventorySlotView[items.Count];
+		_slots = new InventorySlotView[_data.Size];
 		for (int i = 0; i < _data.Size; i++)
 		{
 			ItemStack itemStack = i < items.Count ? items[i] : null;
