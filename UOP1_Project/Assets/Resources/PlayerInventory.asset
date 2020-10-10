@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _size: 8
   _items:
-  - _inspectorName: Item x4
+  - _inspectorName: Item x1
     _item: {fileID: 11400000, guid: 8e15d135a3263b54ea44f4443b61ddd7, type: 2}
-    _count: 4
-  - _inspectorName: AnotherItem x6
+    _count: 1
+  - _inspectorName: Stick x6
     _item: {fileID: 11400000, guid: 367ead45071045b4f93b1cfce7a8f7a4, type: 2}
     _count: 6

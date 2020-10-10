@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4dadaf63ff37e3649bb77c4d672cbb1f, type: 3}
-  m_Name: Item
+  m_Name: Stick
   m_EditorClassIdentifier: 
-  _icon: {fileID: 0}
-  _name: Item
+  _icon: {fileID: 21300000, guid: 58c9569125acc114698e05b7215a4933, type: 3}
+  _name: Stick
   _category: 0
   _description: 
-  _maxStackSize: 8
+  _maxStackSize: 16

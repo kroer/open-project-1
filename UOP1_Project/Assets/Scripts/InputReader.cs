@@ -14,6 +14,7 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions
 	public UnityAction pauseEvent;
 	public UnityAction<Vector2> moveEvent;
 	public UnityAction<Vector2> cameraMoveEvent;
+	public UnityAction inventoryEvent;
 
 	GameInput gameInput;
 
@@ -85,5 +86,10 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions
 		{
 			cameraMoveEvent.Invoke(context.ReadValue<Vector2>());
 		}
+	}
+
+	public void OnInventory(InputAction.CallbackContext context)
+	{
+		inventoryEvent?.Invoke();
 	}
 }

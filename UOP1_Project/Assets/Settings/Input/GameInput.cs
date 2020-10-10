@@ -73,6 +73,14 @@ public class @GameInput : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Inventory"",
+                    ""type"": ""Button"",
+                    ""id"": ""1b9e2f68-5ff3-4849-ba2b-ac713b32caf0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -460,6 +468,28 @@ public class @GameInput : IInputActionCollection, IDisposable
                     ""action"": ""RotateCamera"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b53e368d-d725-4365-a51e-9bf7d2383742"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardOrGamepad"",
+                    ""action"": ""Inventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b9462cf3-9476-47f4-8f94-a2f296be7674"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardOrGamepad"",
+                    ""action"": ""Inventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -498,6 +528,7 @@ public class @GameInput : IInputActionCollection, IDisposable
         m_Gameplay_Pause = m_Gameplay.FindAction("Pause", throwIfNotFound: true);
         m_Gameplay_ExtraAction = m_Gameplay.FindAction("ExtraAction", throwIfNotFound: true);
         m_Gameplay_RotateCamera = m_Gameplay.FindAction("RotateCamera", throwIfNotFound: true);
+        m_Gameplay_Inventory = m_Gameplay.FindAction("Inventory", throwIfNotFound: true);
         // Menus
         m_Menus = asset.FindActionMap("Menus", throwIfNotFound: true);
     }
@@ -556,6 +587,7 @@ public class @GameInput : IInputActionCollection, IDisposable
     private readonly InputAction m_Gameplay_Pause;
     private readonly InputAction m_Gameplay_ExtraAction;
     private readonly InputAction m_Gameplay_RotateCamera;
+    private readonly InputAction m_Gameplay_Inventory;
     public struct GameplayActions
     {
         private @GameInput m_Wrapper;
@@ -567,6 +599,7 @@ public class @GameInput : IInputActionCollection, IDisposable
         public InputAction @Pause => m_Wrapper.m_Gameplay_Pause;
         public InputAction @ExtraAction => m_Wrapper.m_Gameplay_ExtraAction;
         public InputAction @RotateCamera => m_Wrapper.m_Gameplay_RotateCamera;
+        public InputAction @Inventory => m_Wrapper.m_Gameplay_Inventory;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -597,6 +630,9 @@ public class @GameInput : IInputActionCollection, IDisposable
                 @RotateCamera.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRotateCamera;
                 @RotateCamera.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRotateCamera;
                 @RotateCamera.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRotateCamera;
+                @Inventory.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnInventory;
+                @Inventory.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnInventory;
+                @Inventory.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnInventory;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -622,6 +658,9 @@ public class @GameInput : IInputActionCollection, IDisposable
                 @RotateCamera.started += instance.OnRotateCamera;
                 @RotateCamera.performed += instance.OnRotateCamera;
                 @RotateCamera.canceled += instance.OnRotateCamera;
+                @Inventory.started += instance.OnInventory;
+                @Inventory.performed += instance.OnInventory;
+                @Inventory.canceled += instance.OnInventory;
             }
         }
     }
@@ -669,6 +708,7 @@ public class @GameInput : IInputActionCollection, IDisposable
         void OnPause(InputAction.CallbackContext context);
         void OnExtraAction(InputAction.CallbackContext context);
         void OnRotateCamera(InputAction.CallbackContext context);
+        void OnInventory(InputAction.CallbackContext context);
     }
     public interface IMenusActions
     {
