@@ -12,7 +12,7 @@ public class ItemData : ScriptableObject
 	}
 
 	[Header("Base settings")]
-	[SerializeField] private Sprite _icon = null;
+	[SerializeField] [ItemIcon] private Sprite _icon = null;
 	[SerializeField] private string _name = string.Empty;
 	[SerializeField] protected CategoryType _category;
 	[SerializeField] private string _description = string.Empty;
@@ -22,11 +22,7 @@ public class ItemData : ScriptableObject
 	public string Name => _name;
 	public int MaxStackSize => _maxStackSize;
 	public CategoryType Category => _category;
-
-	public virtual string GetDescription()
-	{
-		return _description;
-	}
+	public string DEscription => _description;
 
 	public override string ToString()
 	{
